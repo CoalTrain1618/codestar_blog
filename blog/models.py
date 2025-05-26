@@ -15,3 +15,4 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True) # DateTimeField automatically sets the date and time when the post is created.
     status = models.IntegerField(choices=STATUS, default=0) # IntegerField is used to store the status of the post, with choices defined in STATUS tuple.
     excerpt =  models.TextField(max_length=200, blank=True)
+    updated_on = models.DateTimeField(auto_now=True)
