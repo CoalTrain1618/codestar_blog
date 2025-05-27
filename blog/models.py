@@ -16,3 +16,10 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0) # IntegerField is used to store the status of the post, with choices defined in STATUS tuple.
     excerpt =  models.TextField(max_length=200, blank=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
+    body = models.TextField()
+    approved = models.BooleanField(default=False)
+    created_on = models.DateTimeField(auto_now_add=True)
