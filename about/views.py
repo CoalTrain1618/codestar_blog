@@ -1,16 +1,21 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from .models import About
 
 # Create your views here.
 
 def about_detail(request):
-    queryset = About.objects.order_by("title", "content", "updated_on")
-    post = get_object_or_404(queryset)
+    """
+    Display About page which can be edited when needed.
 
+
+    """
+    about = About.objects.order_by("title", "content", "updated_on").first()
+    if not about:
+        return render(request, "about/about.html")
     return render(
         request,
         "about/about.html",
         {
-            "post":post
+            "post":about
         }
     )
