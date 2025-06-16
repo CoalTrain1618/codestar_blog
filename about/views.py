@@ -16,6 +16,6 @@ def about_detail(request):
         request,
         "about/about.html",
         {
-            "post":about
+            "about":about
         }
     )
