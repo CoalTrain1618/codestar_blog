@@ -36,15 +36,15 @@ def post_detail(request, slug):
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.author = request.user
-            comment.post = post
+            comment = comment_form.save(commit=False) # Allows for further editing
+            comment.author = request.user # sets author as current logged in user
+            comment.post = post 
             comment.save()
             messages.add_message(
                 request, messages.SUCCESS,
                 'Comment submitted and awaiting approval'
             )
-
+    #   Sets the form back to blank if the users wants to make another comment
     comment_form = CommentForm()
 
     return render(
